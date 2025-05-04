@@ -1,30 +1,50 @@
 body {
-    background-color: rgb(165, 165, 165);
+  background-color: rgb(165, 165, 165);
 
-    /* Use a system font, if none are available use an available sans-sarif */
-    font-family: system-ui, sans-serif;
-    margin: 0 auto;
-  }
-  
-  .board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 325px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .sqr {
-    width: 30%;
-    aspect-ratio: 1/1;
-    border: 3px solid rgb(65, 65, 65);
-    font-size: 64px;
-    text-align: center;
-    background-color: rgb(119, 119, 119);
-  }
-  h1 {
-    text-align: center;
-  }
-  #message {
-    text-align: center;
-  }
+  /* Use a system font, if none are available use an available sans-sarif */
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 325px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.sqr {
+  width: 30%;
+  aspect-ratio: 1/1;
+  border: 3px solid rgb(65, 65, 65);
+  font-size: 64px;
+  text-align: center;
+  background-color: rgb(119, 119, 119);
+}
+
+h1 {
+  text-align: center;
+}
+
+#message {
+  text-align: center;
+}
+#reset-button{
+  padding: 20px;
+  font-size: 30px;
+  border-radius: 25%;
+  border: 2px solid black;
+  cursor: pointer;
+}
+#reset-button:hover{
+border: 2px solid white;
+background-color: rgb(49, 49, 49);
+color:white;
+}

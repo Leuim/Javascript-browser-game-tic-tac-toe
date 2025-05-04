@@ -11,12 +11,13 @@ let tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls= document.querySelectorAll('.sqr')
 const messageEl = document.querySelector('#message')
+const resetButton = document.querySelector('#reset-button')
 // console.log(messageEl);
 /*-------------------------------- Functions --------------------------------*/
 
 const init = () =>{
     // console.log('init function');
-     board = ['X','O','','','','','','','']
+     board = ['','','','','','','','','']
      turn = 'X'
      winner = false
      tie = false
@@ -41,11 +42,11 @@ const updateBoard = () => {
 }
 const updateMessage = () =>{
     if(winner === false && tie === false){
-        messageEl.textContent == `It is ${turn} turn!`
+        messageEl.textContent = `It is ${turn} turn!`
     } else if (winner === false && tie === true){
-        messageEl.textContent == 'It is a tie!'
+        messageEl.textContent = 'It is a tie!'
     } else {
-        messageEl.textContent == `Congratulations ${turn} you won`
+        messageEl.textContent = `Congratulations ${turn}, You win!`
     }
 }
 const handleClick = (event) =>{
@@ -60,6 +61,9 @@ const handleClick = (event) =>{
     }
     placePiece(squareIdx)
     checkWinner()
+    checkForTie()
+    switchPlayerTurn()
+    render()
 }
 const placePiece = (index)=>{
     board[index] = turn
@@ -93,13 +97,36 @@ const checkWinner = () => {
       winner = true
     }
   };
-  
+const checkForTie = () =>{
+    if(winner === true){
+        return
+    }
+    if(board.includes('')){
+        tie = false
+    } else {
+        tie = true
+    }
+}
+const switchPlayerTurn = () =>{
+    if(winner === true){
+        return
+    } else {
+        if(turn === 'X'){
+            turn = 'O'
+            // console.log(turn);
+        } else if (turn === 'O'){
+            turn = 'X'
+            // console.log(turn);
+        }
+    }
+    
+}
 init()
 /*----------------------------- Event Listeners -----------------------------*/
 squareEls.forEach((square, i) =>{
     square.addEventListener('click', handleClick)
 })
-
+resetButton.addEventListener('click', init)
 
 //1) Define the required variables used to track the state of the game.
 
