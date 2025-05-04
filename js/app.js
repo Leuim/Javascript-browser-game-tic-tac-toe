@@ -51,9 +51,9 @@ const updateMessage = () =>{
 }
 const handleClick = (event) =>{
     const squareIdx = Number(event.target.id)
-    console.log(squareIdx);
+    // console.log(squareIdx);
     if (board[squareIdx] !== ''){
-        console.log('isnt empty');
+        // console.log('isnt empty');
         return
     }
     if (winner === true){
@@ -67,7 +67,7 @@ const handleClick = (event) =>{
 }
 const placePiece = (index)=>{
     board[index] = turn
-    console.log(board);
+    // console.log(board);
     updateBoard()
 }
 const checkWinner = () => {
