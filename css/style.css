@@ -1,21 +1,30 @@
 body {
-    background-color: gainsboro;
+    background-color: rgb(165, 165, 165);
+
     /* Use a system font, if none are available use an available sans-sarif */
     font-family: system-ui, sans-serif;
-    margin: 0;
+    margin: 0 auto;
   }
   
   .board {
     display: flex;
     flex-wrap: wrap;
     width: 325px;
+    justify-content: center;
+    align-items: center;
   }
   
   .sqr {
     width: 30%;
     aspect-ratio: 1/1;
-    border: 3px solid black;
+    border: 3px solid rgb(65, 65, 65);
     font-size: 64px;
     text-align: center;
+    background-color: rgb(119, 119, 119);
   }
-  
+  h1 {
+    text-align: center;
+  }
+  #message {
+    text-align: center;
+  }

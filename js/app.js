@@ -1,14 +1,12 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const winningCombos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board = ['button','','','','','','','','','']
-let turn = 'X'
-let winner = false
-let tie = false
-
-
+let board 
+let turn 
+let winner 
+let tie 
 
 /*------------------------ Cached Element References ------------------------*/
 const squareEls= document.querySelectorAll('.sqr')
@@ -17,24 +15,90 @@ const messageEl = document.querySelector('#message')
 /*-------------------------------- Functions --------------------------------*/
 
 const init = () =>{
-    console.log('init function');
+    // console.log('init function');
+     board = ['X','O','','','','','','','']
+     turn = 'X'
+     winner = false
+     tie = false
     render()
 }
-const render = () =>{
 
+const render = () =>{
+    updateBoard()
+    updateMessage()
 }
 const updateBoard = () => {
-    board.forEach((b , index) =>{
+    board.forEach((boardValue , index) =>{
        const square = squareEls[index]
+       square.textContent = boardValue
+       if( boardValue === 'X'){
+        square.style.color = 'red'
+        // square.style.backgroundColor = 'grey'
+       } else if (boardValue === 'O'){
+        square.style.color = 'blue'
+       }
     })
 }
 const updateMessage = () =>{
-
+    if(winner === false && tie === false){
+        messageEl.textContent == `It is ${turn} turn!`
+    } else if (winner === false && tie === true){
+        messageEl.textContent == 'It is a tie!'
+    } else {
+        messageEl.textContent == `Congratulations ${turn} you won`
+    }
 }
-
+const handleClick = (event) =>{
+    const squareIdx = Number(event.target.id)
+    console.log(squareIdx);
+    if (board[squareIdx] !== ''){
+        console.log('isnt empty');
+        return
+    }
+    if (winner === true){
+        return
+    }
+    placePiece(squareIdx)
+    checkWinner()
+}
+const placePiece = (index)=>{
+    board[index] = turn
+    console.log(board);
+    updateBoard()
+}
+const checkWinner = () => {
+    if (board[0] !== '' && board[0] === board[1] && board[0] === board[2]) {
+      winner = true
+    //   console.log(winner);
+    }
+    if (board[3] !== '' && board[3] === board[4] && board[3] === board[5]) {
+      winner = true
+    }
+    if (board[6] !== '' && board[6] === board[7] && board[6] === board[8]) {
+      winner = true
+    }
+    if (board[0] !== '' && board[0] === board[3] && board[0] === board[6]) {
+      winner = true
+    }
+    if (board[1] !== '' && board[1] === board[4] && board[1] === board[7]) {
+      winner = true
+    }
+    if (board[2] !== '' && board[2] === board[5] && board[2] === board[8]) {
+      winner = true
+    }
+    if (board[0] !== '' && board[0] === board[4] && board[0] === board[8]) {
+      winner = true
+    }
+    if (board[2] !== '' && board[2] === board[4] && board[2] === board[6]) {
+      winner = true
+    }
+  };
+  
 init()
 /*----------------------------- Event Listeners -----------------------------*/
-
+squareEls.forEach((square, i) =>{
+    square.addEventListener('click', handleClick)
+})
 
 
 //1) Define the required variables used to track the state of the game.
